@@ -35,6 +35,14 @@ contract EventOrganizer {
     tickets[to][id] += amount;
   }
 
+  function getAllEvents() external view returns (Event[] memory){
+    Event[] memory eventArray = new Event[](eventId);
+    for (uint i = 0; i < eventId; i++) {
+        eventArray[i] = events[i];
+    }
+    return eventArray;
+  }
+
   modifier eventExists(uint id) {
     require(events[id].date != 0, 'Event does not exist.');
     _;
